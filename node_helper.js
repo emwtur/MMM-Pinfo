@@ -166,11 +166,7 @@ module.exports = NodeHelper.create({
     getCPUInfo: function() {
         return new Promise((resolve) => {
             var CPUInfo = this.DeviceInfo[this.DeviceInfo.length - 14].split(":");
-            var type = CPUInfo[1].slice(1).split(' ');
-            delete type[type.length-1];
-            delete type[type.length-2];
-            delete type[type.length-3];
-            this.status['CPU'].type = type.toString().replace(new RegExp(',', 'g'), ' ');
+            this.status['CPU'].type = "Unknown";
 
             si.currentLoad().then(data => {
                 this.status['CPU'].usage = data.currentLoad.toFixed(0);
